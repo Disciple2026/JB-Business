@@ -17,7 +17,6 @@
             --black: #050505;
             --dark-gray: #121212;
             --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.05);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
@@ -32,7 +31,7 @@
 
         h1, h2, h3, .logo-text, .footer-logo { font-family: 'Cinzel', serif; }
 
-        /* --- UI ELEMENTS --- */
+        /* --- BOUTONS & UI --- */
         .btn-gold {
             display: inline-block;
             padding: 15px 30px;
@@ -46,6 +45,8 @@
             transition: 0.4s;
             text-decoration: none;
             border-radius: 2px;
+            width: 100%;
+            text-align: center;
         }
         .btn-gold:hover { 
             background: var(--white); 
@@ -53,7 +54,7 @@
             transform: translateY(-2px);
         }
 
-        .section-header { text-align: center; margin-bottom: 60px; position: relative; }
+        .section-header { text-align: center; margin-bottom: 60px; }
         .section-header h2 { font-size: 2.5rem; color: var(--gold); margin-bottom: 10px; }
         .divider { width: 80px; height: 3px; background: var(--gold); margin: 0 auto; border-radius: 2px; }
 
@@ -80,10 +81,10 @@
         /* --- HERO --- */
         .hero {
             height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80');
+            /* IMAGE ASSET : hero.jpg */
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('assets/hero.jpg');
             background-size: cover; background-position: center; background-attachment: fixed;
         }
-        .hero-content { opacity: 0; animation: fadeUp 1.5s forwards; }
         .hero h1 { 
             font-size: clamp(2.5rem, 8vw, 5rem); 
             background: linear-gradient(to right, var(--gold), var(--white), var(--gold));
@@ -91,8 +92,6 @@
             margin-bottom: 15px; 
         }
         .hero p { font-size: 1rem; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 40px; color: #ddd; }
-
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
         /* --- SECTIONS LAYOUT --- */
         section { padding: 100px 20px; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid #1a1a1a; }
@@ -106,7 +105,7 @@
         }
         .premium-card:hover { border-color: var(--gold-dark); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         
-        .form-group { margin-bottom: 20px; position: relative; }
+        .form-group { margin-bottom: 20px; }
         input, select, textarea {
             width: 100%; padding: 15px; background: #0a0a0a; border: 1px solid #333; color: white;
             font-family: 'Montserrat', sans-serif; border-radius: 2px; transition: 0.3s;
@@ -129,11 +128,6 @@
             padding: 20px; color: white; text-align: center;
         }
 
-        /* --- DESIGN & FASHION --- */
-        .service-list { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 30px; }
-        .service-item { display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: #ccc; }
-        .service-item i { color: var(--gold); font-size: 0.8rem; }
-
         /* --- FOOTER --- */
         footer { padding: 80px 20px 30px; background: #000; border-top: 2px solid var(--gold); text-align: center; }
         .footer-grid { display: grid; grid-template-columns: 1fr; gap: 40px; max-width: 1000px; margin: 0 auto 60px; text-align: left; }
@@ -149,7 +143,6 @@
         }
         .angelique-logo { font-family: 'Cinzel', serif; color: #fff; font-weight: 700; position: relative; display: inline-block; margin-left: 5px; }
         .angelique-logo::after { content: '✦'; position: absolute; top: -5px; right: -8px; color: var(--gold); font-size: 0.7rem; animation: blink 2s infinite; }
-        
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
         /* --- NOTIFICATION --- */
@@ -161,7 +154,6 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
         #notification.show { transform: translateX(0); }
-
     </style>
 </head>
 <body>
@@ -186,7 +178,7 @@
         <div class="hero-content">
             <p>Finance • Beauté • Style • Design</p>
             <h1>L'Art de l'Excellence</h1>
-            <a href="#banque" class="btn-gold">Découvrir l'univers</a>
+            <a href="#banque" class="btn-gold" style="width: auto; padding: 15px 40px;">Découvrir l'univers</a>
         </div>
     </div>
 
@@ -205,7 +197,10 @@
             <div class="premium-card">
                 <h3 style="color: var(--white); margin-bottom: 25px; text-transform: uppercase; font-size: 1.1rem;">Simulateur de Crédit</h3>
                 <form id="form-banque" onsubmit="submitForm(event, 'JB-BANQUE')">
-                    <input type="hidden" name="access_key" value="40008284-53ab-4aea-ab6c-84769b2a4a44"> <div class="form-group">
+                    
+                    <input type="hidden" name="access_key" value="e86f051f-b697-445f-afde-5aaa7cfc1aa4">
+                    
+                    <div class="form-group">
                         <label>Identité</label>
                         <input type="text" name="nom" placeholder="Nom Complet" required>
                     </div>
@@ -218,25 +213,25 @@
                         <input type="number" id="loan-amount" name="montant" placeholder="Ex: 1000" oninput="calculateLoan()" required>
                     </div>
                     <div class="form-group">
-                        <label>Durée (Semaines)</label>
-                        <input type="number" id="loan-weeks" name="semaines" placeholder="Ex: 4" oninput="calculateLoan()" required>
+                        <label>Durée (Nombre de semaines)</label>
+                        <input type="number" id="loan-weeks" name="semaines" placeholder="Ex: 2" oninput="calculateLoan()" required>
                     </div>
 
                     <div class="calc-display">
                         <div class="result-row"><span>Montant :</span> <span id="display-amount">0</span> DH</div>
-                        <div class="result-row"><span>Intérêts est. :</span> <span id="display-interest">0</span> DH</div>
+                        <div class="result-row"><span>Taux appliqué :</span> <span id="display-rate" style="color:var(--gold);">0%</span></div>
                         <div class="total-row"><span>TOTAL À REMBOURSER</span> <span id="display-total">0.00 DH</span></div>
                     </div>
 
-                    <button type="submit" class="btn-gold" style="width:100%">Soumettre le dossier</button>
+                    <button type="submit" class="btn-gold">Soumettre le dossier</button>
                 </form>
             </div>
 
             <div style="text-align: center;">
-                <img src="https://images.unsplash.com/photo-1579621970795-87facc2f976d?auto=format&fit=crop&q=80" alt="Finance" style="width: 100%; border-radius: 4px; border: 1px solid var(--gold); margin-bottom: 30px; opacity: 0.8;">
-                <h3 style="color: var(--gold); margin-bottom: 15px;">Engagement Qualité</h3>
+                <img src="assets/finance.jpg" alt="Finance" style="width: 100%; border-radius: 4px; border: 1px solid var(--gold); margin-bottom: 30px; opacity: 0.8;">
+                <h3 style="color: var(--gold); margin-bottom: 15px;">Transparence Totale</h3>
                 <p style="color: #aaa; font-size: 0.9rem; line-height: 1.8;">
-                    Chaque dossier est étudié avec soin. Nous garantissons une réponse sous 24h ouvrées. La validation finale et la grille des taux vous seront communiquées personnellement via WhatsApp.
+                    Nos taux sont clairs et définis selon la durée. Réponse sous 24h ouvrées. La validation finale vous sera envoyée sur WhatsApp.
                 </p>
             </div>
         </div>
@@ -251,13 +246,13 @@
         <div class="grid">
             <div class="swiper mySwiper">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&q=80');">
+                    <div class="swiper-slide" style="background-image: url('assets/coiffure1.jpg');">
                         <div class="slide-caption">Coupes Homme Premium</div>
                     </div>
-                    <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1503951914205-2d3433965d9a?auto=format&fit=crop&q=80');">
+                    <div class="swiper-slide" style="background-image: url('coiffure2.jpg');">
                         <div class="slide-caption">Barbe & Soins</div>
                     </div>
-                    <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&q=80');">
+                    <div class="swiper-slide" style="background-image: url('assets/coiffure3.jpg');">
                         <div class="slide-caption">Service à Domicile</div>
                     </div>
                 </div>
@@ -269,7 +264,7 @@
                 <p style="color: var(--gold); margin-bottom: 30px; font-size: 0.9rem;">Salon: 25 DH | Domicile: 30 DH (+ transport)</p>
                 
                 <form onsubmit="submitForm(event, 'JB-COIFFURE')">
-                    <input type="hidden" name="access_key" value="40008284-53ab-4aea-ab6c-84769b2a4a44">
+                    <input type="hidden" name="access_key" value="e86f051f-b697-445f-afde-5aaa7cfc1aa4">
                     
                     <div class="form-group">
                         <label>Type de service</label>
@@ -291,7 +286,7 @@
                         <i class="fas fa-clock"></i> Ponctualité exigée. Tout retard peut entraîner l'annulation.
                     </div>
 
-                    <button type="submit" class="btn-gold" style="width:100%">Confirmer le RDV</button>
+                    <button type="submit" class="btn-gold">Confirmer le RDV</button>
                 </form>
             </div>
         </div>
@@ -308,32 +303,31 @@
             
             <div class="premium-card">
                 <h3 style="margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px;">Studio Graphique</h3>
-                <p style="margin-bottom: 20px; font-size: 0.9rem; color: #aaa;">Communication visuelle haute gamme pour votre entreprise ou événements.</p>
+                <p style="margin-bottom: 20px; font-size: 0.9rem; color: #aaa;">Communication visuelle haute gamme pour votre entreprise.</p>
                 
-                <ul class="service-list">
-                    <li class="service-item"><i class="fas fa-gem"></i> Logos</li>
-                    <li class="service-item"><i class="fas fa-gem"></i> Affiches</li>
-                    <li class="service-item"><i class="fas fa-gem"></i> Flyers</li>
-                    <li class="service-item"><i class="fas fa-gem"></i> Cartes de Visite</li>
-                    <li class="service-item"><i class="fas fa-gem"></i> Retouche Photo</li>
-                    <li class="service-item"><i class="fas fa-gem"></i> Portraits Art</li>
+                <ul style="list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px;">
+                    <li style="color:#ccc; font-size:0.9rem;"><i class="fas fa-gem" style="color:var(--gold); margin-right:5px;"></i> Logos</li>
+                    <li style="color:#ccc; font-size:0.9rem;"><i class="fas fa-gem" style="color:var(--gold); margin-right:5px;"></i> Affiches</li>
+                    <li style="color:#ccc; font-size:0.9rem;"><i class="fas fa-gem" style="color:var(--gold); margin-right:5px;"></i> Flyers</li>
+                    <li style="color:#ccc; font-size:0.9rem;"><i class="fas fa-gem" style="color:var(--gold); margin-right:5px;"></i> Cartes de Visite</li>
                 </ul>
 
-                <a href="#contact" class="btn-gold" style="width: 100%; text-align: center;">Demander un devis</a>
+                <a href="#contact" class="btn-gold">Demander un devis</a>
             </div>
 
-            <div class="premium-card" style="background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80'); background-size: cover;">
+            <div class="premium-card" style="background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('fashion1.jpg'); background-size: cover;">
                 <h3 style="margin-bottom: 20px; color: var(--gold);">Boutique Fashion</h3>
                 <p style="color: white; margin-bottom: 20px;">Hoodies, T-shirts et accessoires streetwear.</p>
                 
                 <form onsubmit="submitForm(event, 'JB-FASHION')">
-                    <input type="hidden" name="access_key" value="40008284-53ab-4aea-ab6c-84769b2a4a44">
+                    <input type="hidden" name="access_key" value="e86f051f-b697-445f-afde-5aaa7cfc1aa4">
+                    
                     <div style="display: flex; gap: 10px;">
                         <input type="text" name="article" placeholder="Article (ex: Hoodie Noir)" required style="background: rgba(0,0,0,0.7);">
                         <input type="text" name="taille" placeholder="Taille" style="width: 30%; background: rgba(0,0,0,0.7);">
                     </div>
                     <input type="tel" name="whatsapp" placeholder="WhatsApp" required style="background: rgba(0,0,0,0.7); margin-top: 10px;">
-                    <button type="submit" class="btn-gold" style="width: 100%; margin-top: 15px;">Commander</button>
+                    <button type="submit" class="btn-gold" style="margin-top: 15px;">Commander</button>
                 </form>
             </div>
 
@@ -348,25 +342,24 @@
             </div>
             <div>
                 <h4>Contact</h4>
-                <p><i class="fas fa-envelope" style="color: var(--gold); width: 20px;"></i> jxxxxxx@gmail.com</p>
-                <p><i class="fab fa-whatsapp" style="color: var(--gold); width: 20px;"></i> 06 XX XX XX XX</p>
+                <p><i class="fas fa-gmail" style="color: var(--gold); width: 20px;"></i>  jacoboka25@gmail.com</p>
+                <p><i class="fab fa-whatsapp" style="color: var(--gold); width: 20px;"></i>  +212 772-903275/ +212 641-971138</p>
                 <div class="socials" style="margin-top: 20px;">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i>@jacoboka24</a>
                 </div>
             </div>
             <div>
                 <h4>Horaires</h4>
                 <p>Lundi - Samedi</p>
-                <p style="color: var(--gold);">09:00 - 20:00</p>
-                <p>Dimanche : Fermé</p>
+                <p style="color: var(--gold);">09:00 - 23:00</p>
+                <p>Dimanche </p>
+                <p style="color: var(--gold);">15:00 - 22:00</p>
             </div>
         </div>
 
         <div class="angelique-signature">
             Design & Développement par <span class="angelique-logo">Angélique Studio</span>
-            <div style="font-size: 0.6rem; opacity: 0.6; margin-top: 5px;">Solutions Digitales Premium</div>
+            <div style="font-size: 0.6rem; opacity: 0.6; margin-top: 5px;">Solutions Digitales Premium pour Entrepreneurs</div>
         </div>
     </footer>
 
@@ -379,22 +372,45 @@
             pagination: { el: ".swiper-pagination", clickable: true },
         });
 
-        // 2. Logique Calculateur Banque
+        // 2. Logique Calculateur Banque (TES REGLES DE PRIX)
         function calculateLoan() {
             let amount = parseFloat(document.getElementById('loan-amount').value) || 0;
             let weeks = parseFloat(document.getElementById('loan-weeks').value) || 0;
-            
-            // Simulation d'un taux (exemple 5% sur la durée)
-            // A modifier selon tes vrais calculs
-            let interestRate = 0.05; 
-            if (weeks > 10) interestRate = 0.08; // Exemple: taux augmente si durée longue
+            let rate = 0;
+            let percentText = "0%";
 
-            let interest = amount * interestRate * (weeks / 4); // Formule fictive simple
-            let total = amount + interest;
+            // Logique selon tes instructions :
+            // 1 jour à 2 semaines : 20%
+            if (weeks > 0 && weeks <= 2) {
+                rate = 0.20;
+                percentText = "20%";
+            } 
+            // 2 semaines à 1 mois (env. 4 semaines) : 40%
+            else if (weeks > 2 && weeks <= 4) {
+                rate = 0.40;
+                percentText = "40%";
+            }
+            // 1 mois à 1 mois 2 sem (env. 6 semaines) : 60%
+            else if (weeks > 4 && weeks <= 6) {
+                rate = 0.60;
+                percentText = "60%";
+            }
+            // 1 mois 2 sem à 2 mois (env. 8 semaines) : 80%
+            else if (weeks > 6 && weeks <= 8) {
+                rate = 0.80;
+                percentText = "80%";
+            }
+            // Au delà de 2 mois : 100%
+            else if (weeks > 8) {
+                rate = 1.00;
+                percentText = "100%";
+            }
+
+            let total = amount + (amount * rate);
 
             // Mise à jour affichage
             document.getElementById('display-amount').innerText = amount;
-            document.getElementById('display-interest').innerText = interest.toFixed(0);
+            document.getElementById('display-rate').innerText = percentText;
             document.getElementById('display-total').innerText = total.toFixed(2) + " DH";
         }
 
@@ -406,13 +422,12 @@
             const originalBtnText = btn.innerText;
 
             // Etat chargement
-            btn.innerText = "Envoi en cours...";
+            btn.innerText = "Envoi...";
             btn.style.opacity = "0.7";
 
             const formData = new FormData(form);
             const object = Object.fromEntries(formData);
-            // Ajout du nom du service dans les données
-            object.subject = `Nouvelle demande : ${serviceName}`;
+            object.subject = `Nouvelle demande : ${serviceName}`; // Sujet du mail
             const json = JSON.stringify(object);
 
             fetch('https://api.web3forms.com/submit', {
@@ -422,11 +437,12 @@
             })
             .then(async (response) => {
                 if (response.status == 200) {
-                    showNotification(`Demande ${serviceName} reçue ! Confirmation WhatsApp à venir.`);
+                    showNotification(`Demande reçue ! Confirmation via WhatsApp.`);
                     form.reset();
                     // Remettre à zéro le calculateur si c'est la banque
                     if(serviceName === 'JB-BANQUE') {
                         document.getElementById('display-total').innerText = "0.00 DH";
+                        document.getElementById('display-rate').innerText = "0%";
                     }
                 } else {
                     showNotification("Erreur lors de l'envoi. Réessayez.", true);
@@ -457,4 +473,5 @@
     </script>
 </body>
 </html>
+
 
